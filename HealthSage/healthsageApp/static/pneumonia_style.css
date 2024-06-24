@@ -1,0 +1,107 @@
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background-color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90vw;
+    height: 90vh;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #4CAF50;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4CAF50;
+    text-align: center;
+    text-transform: capitalize;
+}
+h3{
+    color: blueviolet;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    padding-top: 20px;
+}
+
+.image-section, .info-section {
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
+.image-section {
+    color: #1E90FF;
+}
+.image-section img{
+    background: cover;
+    width: 80%;
+    height: 600px;   
+    border-radius: 5%;
+    /* object-fit: cover; */
+
+}
+.info-section {
+    color: #FF8C00;
+}
+
+.info-section input{
+    padding: 0 0 20px 20px;
+    /* margin: 0 0 20px 20px; */
+    border-radius: 50px;
+    
+}
+
+#ImageUpload {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#ImageUpload:focus {
+    outline: none;
+    border-color: #007bff; /* Change to your preferred focus color */
+}
+
+#upload-file input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#upload-file input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade of primary color */
+}
+
+.info-section h2:last-child {
+    margin-top: 30px;
+    color: #1E90FF;
+}

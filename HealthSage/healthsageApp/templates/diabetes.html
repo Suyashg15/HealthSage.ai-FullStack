@@ -1,0 +1,58 @@
+{% comment %} {% include 'base.html' %} {% endcomment %}
+{%load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes</title>
+    <link rel="stylesheet" href="{% static 'diabetes_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes</h1>
+        <div class="content">
+            <div class="image-section">
+                <img src="{% static 'images/OIG4.jpg' %}" alt="">
+            </div>
+            <div class="info-section">
+                <h2>INPUT CREDENTIALS</h2>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="pregnancies">Pregnancies:</label>
+                    <input type="number" id="pregnancies" name="Pregnancies" required> <br>
+
+                    <label for="glucose">Glucose:</label>
+                    <input type="number" id="glucose" name="glucose" required> <br>
+
+                    <label for="bp">Blood Pressure:</label>
+                    <input type="number" id="bp" name="BP" required> <br>
+
+                    <label for="skinthickness">Skin Thickness:</label>
+                    <input type="number" id="skinthickness" name="skinthickness" required> <br>
+
+                    <label for="insulin">Insulin:</label>
+                    <input type="number" id="insulin" name="insulin" required> <br>
+
+                    <label for="bmi">BMI:</label>
+                    <input type="number" id="bmi" name="bmi" required> <br>
+
+                    <label for="dpf">Diabetes Pedigree Function:</label>
+                    <input type="number" id="dpf" name="DPF" required> <br>
+
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required> <br>
+
+                    <input type="submit" value="Make PREDICTION">
+                </form>
+                {% comment %} <h2>PREDICTION</h2> {% endcomment %}
+                {% if result %}
+                    <h3> Predicted Result : {{result}}</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock%}
