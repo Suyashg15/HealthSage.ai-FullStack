@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'home_style.css'%}">
+<div class="container">
+    <main>
+        <div class="content">
+            <section class="title-slogan" >
+                <p>Prevent, Detect, Protect – Every Moment Counts in Health’s Respect</p>
+                <br>
+                <p>Catch It Early, Treat It Timely – Health’s Guardian Angel Sublimely</p>
+            </section>
+            <section class="image">
+                <img src="{% static 'images/home_image.jpg' %}" alt="Image">
+            </section>
+        </div>
+        <section class="thumbnails">
+            <div class="thumbnail"><b>HealthSage.ai is an advanced solution to all your health Problems as it it can detect all your problems at an early stage </b></div>
+            <div class="thumbnail"><b>HealthSage.ai gives you the most accurate results on yout Health</b></div>
+            <div class="thumbnail"><b>HealthSage.ai will also give you your personalized healthcaree remedies related to your food diet so you can make yourself healthy and away from diseases </b></div>
+        </section>
+    </main>
+</div>
+{% endblock %}

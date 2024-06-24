@@ -1,0 +1,139 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e8e2e2;
+    color: #fff;
+    height: 100%;
+}
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex: 1;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.title-slogan,
+.image {
+    box-sizing: border-box;
+    border: 2px solid;
+    padding: 20px;
+    flex: 1 1 45%;
+    margin: 10px;
+    min-width: 300px;
+    
+}
+.image img{
+    height: 550px;
+    width: 500px;
+}
+
+.title-slogan {
+    border: transparent;
+    align-content: center;
+    text-align: center;
+    justify-content:center;
+    /* border-color: #007acc; */
+    /* background-color: #333; */
+}
+
+.title-slogan h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.title-slogan p {
+    font-size: 45px;
+    margin: 10px 0 0;
+    text-align: left;
+    color: #f44336;
+}
+.title-slogan p:nth-child(1){
+    color: #41a6c0;
+}
+
+.image {
+    /* border-color: #ff9800; */
+    background: transparent;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.thumbnails .thumbnail {
+    color: black;
+    border: 2px solid #e91e63;
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1 1 30%;
+    margin: 10px;
+    min-width: 200px;
+    background-color: #e2c9c9;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.thumbnails .thumbnail:hover,
+.thumbnails .thumbnail:focus {
+    transform: scale(1.05);
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .title-slogan,
+    .image,
+    .thumbnails .thumbnail {
+        flex: 1 1 100%;
+    }
+
+    .title-slogan,
+    .image {
+        margin: 10px 0;
+    }
+
+    header nav {
+        justify-content: center;
+    }
+
+    header nav a {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-slogan h1 {
+        font-size: 28px;
+    }
+
+    .title-slogan p {
+        font-size: 18px;
+    }
+}
