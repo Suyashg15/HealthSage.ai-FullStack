@@ -10,7 +10,7 @@ from django.core.files.storage import default_storage
 from .dl_model import getResult, get_className
 from django.utils.text import get_valid_filename
 from .dl_model_DR import preprocess_image, class_name
-from keras.models import load_model
+from tensorflow.keras.models import load_model 
 # Create your views here.
 model1 = pickle.load(open('models/svm.pkl','rb'))
 # model2 = 
