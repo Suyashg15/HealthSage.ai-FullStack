@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 import pickle
+from django.http import HttpResponseRedirect
 # import joblib
 import os
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -11,13 +15,14 @@ from .dl_model import getResult, get_className
 from django.utils.text import get_valid_filename
 from .dl_model_DR import preprocess_image, class_name
 from tensorflow.keras.models import load_model 
+from .forms import SignUpForm,LoginForm
 # Create your views here.
 model1 = pickle.load(open('models/svm.pkl','rb'))
 # model2 = 
 # model = joblib.load('./models/svm.pkl')
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 
 def diabetes(request):
     if request.method=='POST':
@@ -78,6 +83,32 @@ def DR(request):
 # def breast_cancer(request):
 #     if request.method=="POST":
         
+def user_signup(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            messages.success(request,"CONGRATULATION, You are Registered!")
+            form.save()
+            # group = Group.objects.get(name = 'Author')
+            # user.groups.add(group)
+    else:
+        form=SignUpForm()
+    return render(request,'signup.html',{'form':form})
 
-    
+def user_login(request):
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form = LoginForm(request = request, data = request.POST)
+            if form.is_valid():
+                uname = form.cleaned_data['username']
+                pwd = form.cleaned_data['password']
+                user = authenticate(username=uname, password=pwd)
+                if user is not None:
+                    login(request, user)
+                    return HttpResponseRedirect('/signup/')
+        else:
+            form = LoginForm()
+        return render(request, 'blog/login.html', {'form':form})
+    else:
+        return HttpResponseRedirect('/signup/')
     
