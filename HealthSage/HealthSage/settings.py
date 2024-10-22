@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'healthsageApp',
+    'healthsageApp.templatetags',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'models'
+    BASE_DIR / 'models',
 ]
 STATIC_ROOT = BASE_DIR / "collected_static"
 

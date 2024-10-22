@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Diabetes</h1>
+        <h1>Diabetes Detection</h1>
         <div class="content">
             <div class="image-section">
                 <img src="{% static 'images/OIG4.png' %}" alt="">
@@ -21,25 +21,25 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <label for="pregnancies">Pregnancies:</label>
-                    <input type="number" id="pregnancies" name="Pregnancies" required> <br>
+                    <input type="number" id="pregnancies" name="Pregnancies" placeholder="Eg: 0 (for male)" required> <br>
 
                     <label for="glucose">Glucose:</label>
-                    <input type="number" id="glucose" name="glucose" required> <br>
+                    <input type="number" id="glucose" name="glucose" placeholder="44 - 199" required> <br>
 
                     <label for="bp">Blood Pressure:</label>
-                    <input type="number" id="bp" name="BP" required> <br>
+                    <input type="number" id="bp" name="BP" placeholder="24 - 122" required> <br>
 
                     <label for="skinthickness">Skin Thickness:</label>
-                    <input type="number" id="skinthickness" name="skinthickness" required> <br>
+                    <input type="number" id="skinthickness" placeholder="7 - 99" name="skinthickness" required> <br>
 
                     <label for="insulin">Insulin:</label>
-                    <input type="number" id="insulin" name="insulin" required> <br>
+                    <input type="number" id="insulin" placeholder="14 - 846" name="insulin" required> <br>
 
                     <label for="bmi">BMI:</label>
-                    <input type="number" id="bmi" name="bmi" required> <br>
+                    <input type="number" id="bmi" placeholder="18 - 67" name="bmi" step = 0.1 required> <br>
 
                     <label for="dpf">Diabetes Pedigree Function:</label>
-                    <input type="number" id="dpf" name="DPF" required> <br>
+                    <input type="number" id="dpf" placeholder="0.08 - 2.42" name="DPF" step = 0.001 required> <br>
 
                     <label for="age">Age:</label>
                     <input type="number" id="age" name="age" required> <br>
