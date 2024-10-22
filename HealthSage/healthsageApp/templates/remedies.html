@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remedies</title>
+    <link rel="stylesheet" href="{% static 'remedies.css'%}">
+</head>
+{% block content%}
+{% comment %} {% block title%}REMEDIES{% endblock title %} {% endcomment %}
+<body class = "remedies">
+    <h1 class="title" >REMEDIES</h1>
+<div class="content">
+ <div class="book">
+    {% comment %} <p>Hello</p> {% endcomment %}
+    <ul class="remedies-list">
+        <li>Low sugar intake</li>
+        <li>Regular exercise (at least 30 min Daily)</li>
+        <li>Fiber-rich diet</li>
+        <li>Monitor glucose</li>
+        <li>Maintain weight</li>
+        <li>Stay hydrated</li>
+        <li>Manage stress</li>
+        <li>Adequate sleep</li>
+    </ul>
+    <div class="cover">
+        <p>High Diabetes</p>
+    </div>
+   </div>
+ <div class="book">
+    <ul class="remedies-list">
+        <li>Reduce salt intake</li>
+        <li>Regular exercise</li>
+        <li>Quit Alcohol & smoking</li>
+        <li>Manage stress</li>
+        <li>Monitor BP regularly</li>
+        <li>Maintain healthy weight</li>
+    </ul>
+    <div class="cover">
+        <p>High Blood Pressure</p>
+    </div>
+   </div>
+ <div class="book">
+    <ul class="remedies-list">
+        <li>Proper Sleep</li>
+        <li>Stay Hydrated</li>
+        <li>Practise Deep breathning</li>
+        <li>Drink Turmeric Tea</li>
+        <li>Eat nutrient-rich foods</li>
+        <li>Warm/Lukewarm water baths</li>
+    </ul>
+    <div class="cover">
+        <p>Pneumonia</p>
+    </div>
+   </div>
+ <div class="book">
+    <ul class="remedies-list">
+        <li>Eat low fat Foods</li>
+        <li>Nutrient rich food</li>
+        <li>Stay Hydrated</li>
+        <li>Eat Fruits and vegetables</li>
+        <li>Drink Juices like sugarcane, amla, aloe vera, papaya Juices</li>
+    </ul>
+    <div class="cover">
+        <p>Jaundice</p>
+    </div>
+   </div>
+ <div class="book">
+    <ul class="remedies-list">
+        <li>Stay Hydrated</li>
+        <li>Lemon water</li>
+        <li>Pomegranate Juice</li>
+        <li>Turmeric Milk</li>
+        <li>Honey and cinnamon(daalchini)</li>
+        <li>Nutricious Diet</li>
+        <li>Ginger Tea</li>
+        <li>Probiotic Foods like Yogurt</li>
+        <li>Tulsi Leaves</li>
+        <li>Garlic</li>
+        <li>Good Rest</li>
+    </ul>
+    <div class="cover">
+        <p>Typhoid</p>
+    </div>
+   </div>
+ <div class="book">
+    <ul class="remedies-list">
+        <li>Stay Hydrated</li>
+        <li>Juices like Orange,sweet lime, grapefruit</li>
+        <li>Turmeric Milk</li>
+        <li>Honey + cinnamon(daalchini) + pepper water</li>
+        <li>Ginger Tea</li>
+        <li>Apple cider vinegar</li>
+        <li>Citric Fruits</li>
+        <li>Use Mosquito Repellent</li>
+    </ul>
+    <div class="cover">
+        <p>Malaria</p>
+    </div>
+   </div>
+<div class="book">
+        <ul class="remedies-list">
+            <li>Control over your Diabetes</li>
+            <li>Control Blood Pressure, Cholestrol</li>
+            <li>Regular Exercise</li>
+            <li>No Alcohol & Smoking</li>
+            <li>High Protein Foods</li>
+            <li>Good intake of Fruits</li>
+            <li>So extra strain to eyes</li>
+            <li>Keep Hydrated</li>
+        </ul>
+        <div class="cover">
+            <p>Diabetic Retinopathy</p>
+        </div>
+   </div>
+
+
+
+</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const books = document.querySelectorAll('.book');
+        
+        books.forEach(book => {
+        book.addEventListener('click', function() {
+            this.classList.toggle('open');
+        });
+        });
+    });
+</script>
+{% endblock content %}
+</html>

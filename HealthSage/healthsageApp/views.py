@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.core.files.storage import FileSystemStorage
 import pickle
 from django.http import HttpResponseRedirect
@@ -14,10 +14,14 @@ from django.core.files.storage import default_storage
 from .dl_model import getResult, get_className
 from django.utils.text import get_valid_filename
 from .dl_model_DR import preprocess_image, class_name
+from django.conf import settings
+
 from tensorflow.keras.models import load_model 
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+
 from .forms import SignUpForm,LoginForm
 # Create your views here.
-model1 = pickle.load(open('models/svm.pkl','rb'))
 # model2 = 
 # model = joblib.load('./models/svm.pkl')
 
@@ -26,39 +30,52 @@ def home(request):
 
 def diabetes(request):
     if request.method=='POST':
-        pregnancies = request.POST['Pregnancies']
-        glucose = request.POST['glucose']
-        bp = request.POST['BP']
-        skinthickness = request.POST['skinthickness']
-        insulin = request.POST['insulin']
-        bmi = request.POST['bmi']
-        dpf = request.POST['DPF']
-        age = request.POST['age']
+        pregnancies = float(request.POST['Pregnancies'])
+        glucose = float(request.POST['glucose'])
+        bp = float(request.POST['BP'])
+        skinthickness = float(request.POST['skinthickness'])
+        insulin = float(request.POST['insulin'])
+        bmi = float(request.POST['bmi'])
+        dpf = float(request.POST['DPF'])
+        age = float(request.POST['age'])
         
-        y_pred = model1.predict([[pregnancies,glucose,bp,skinthickness,insulin,bmi,dpf,age]])
+        sc = pickle.load(open('models/sc.pkl','rb'))
+        model1 = pickle.load(open('models/Diabetes_Prediction.pkl','rb'))
         
-        if y_pred[0]==1:
-            y_pred = "Positive"
+        input_data = np.array([[pregnancies, glucose, bp, skinthickness, insulin, bmi, dpf, age]])
+        # scaler = StandardScaler()
+        # # Transform the data using the pre-fitted scaler
+        # scaled_data = scaler.transform(input_data)
+        
+        y_pred = model1.predict(sc.transform(input_data.reshape(1,-1)))
+        
+        
+        # print(f"Raw prediction: {y_pred}, Converted prediction: {prediction}")
+        
+        if y_pred == [1]:
+            result = "Positive - You may Have Diabetes"
+        elif y_pred==[0]:
+            result = "Negative - No Diabetes"
         else:
-            y_pred = "Negative"
+            result = "Unexpected prediction value"
         
-        return render(request,'diabetes.html',{'result' : y_pred})
+        return render(request,'diabetes.html',{'result' : result})
         
     return render(request, 'diabetes.html')
 
-@csrf_exempt
+# @csrf_exempt
 def pneumonia(request):
-    if request.method == 'POST':
+    if request.method == 'POST'and request.FILES['file']:
         file = request.FILES['file']
-        filename = get_valid_filename(file.name)
-        file_storage = FileSystemStorage()
-        file_path = file_storage.save(filename, file)
-        file_full_path = file_storage.path(file_path)
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        file_path = os.path.join(settings.MEDIA_ROOT, filename)
         
-        value = getResult(file_full_path)
-        result = get_className(value[0])
+        value = getResult(file_path)
+        result = get_className(value)
         
-        file_storage.delete(file_path)
+        # Clean up the file after processing
+        fs.delete(filename)
         
         return render(request, 'pneumonia.html', {'result': result})
     return render(request, 'pneumonia.html')
@@ -83,32 +100,35 @@ def DR(request):
 # def breast_cancer(request):
 #     if request.method=="POST":
         
-def user_signup(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            messages.success(request,"CONGRATULATION, You are Registered!")
-            form.save()
-            # group = Group.objects.get(name = 'Author')
-            # user.groups.add(group)
-    else:
-        form=SignUpForm()
-    return render(request,'signup.html',{'form':form})
+# def user_signup(request):
+#     if request.method == "POST":
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             messages.success(request,"CONGRATULATION, You are Registered!")
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             messages.success(request, f'Account created for {username}!')
+#             return redirect('login')
+#     else:
+#         form=SignUpForm()
+#     return render(request,'signup.html',{'form':form})
 
-def user_login(request):
-    if not request.user.is_authenticated:
-        if request.method == "POST":
-            form = LoginForm(request = request, data = request.POST)
-            if form.is_valid():
-                uname = form.cleaned_data['username']
-                pwd = form.cleaned_data['password']
-                user = authenticate(username=uname, password=pwd)
-                if user is not None:
-                    login(request, user)
-                    return HttpResponseRedirect('/signup/')
-        else:
-            form = LoginForm()
-        return render(request, 'blog/login.html', {'form':form})
-    else:
-        return HttpResponseRedirect('/signup/')
-    
+# def user_login(request):
+#     if not request.user.is_authenticated:
+#         if request.method == "POST":
+#             form = LoginForm(request = request, data = request.POST)
+#             if form.is_valid():
+#                 uname = form.cleaned_data['username']
+#                 pwd = form.cleaned_data['password']
+#                 user = authenticate(username=uname, password=pwd)
+#                 if user is not None:
+#                     login(request, user)
+#                     return redirect('home')
+#         else:
+#             form = LoginForm()
+#         return render(request, 'login.html', {'form':form})
+#     else:
+#         return redirect('signup')
+
+def remedies(request):
+    return render(request, "remedies.html")

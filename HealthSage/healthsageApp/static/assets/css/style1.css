@@ -479,16 +479,25 @@ body.nav-active { overflow: hidden; }
   #SERVICE
 \*-----------------------------------*/
 
+/* .container{
+  justify-content: space-between;
+  align-items: center;
+} */
+
 .service-list {
   padding-block: 60px 30px;
   padding-inline: 25px;
   display: grid;
+  /* grid-template-columns: repeat(3, 1fr); */
   gap: 30px;
   border-radius: var(--radius-12);
-  margin-block-start: -60px;
+  margin-block-start: -60px;  
   background-color: var(--white);
   box-shadow: var(--shadow-1);
+  /* justify-content: space-between;
+  align-items: center; */
 }
+
 
 .service-card { text-align: center; }
 
@@ -1011,16 +1020,18 @@ body.nav-active { overflow: hidden; }
 
 
 
-  /**
-   * SERVICE
+  /* 
+   SERVICE
    */
 
-  .service-list { grid-template-columns: repeat(4, 1fr); }
+  .service-list { 
+    grid-template-columns: repeat(4, 1fr); 
+  }
 
 
 
-  /**
-   * ABOUT
+  /*
+    ABOUT
    */
 
   .about .container {
